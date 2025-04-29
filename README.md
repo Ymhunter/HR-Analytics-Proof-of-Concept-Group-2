@@ -1,5 +1,4 @@
 # HR-Analytics-Proof-of-Concept-Group-2
-# HR Analytics - Proof of Concept
 
 ## 👥 Team: Group 2
 - Assigned Occupation Fields:
