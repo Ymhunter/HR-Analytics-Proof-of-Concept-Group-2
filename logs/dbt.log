@@ -1,0 +1,24 @@
+[0m17:44:58.839688 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002919FE7F210>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000291A4439FD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000291A477C350>]}
+
+
+============================== 17:44:58.889828 | 42f7e703-4fc4-4f8b-8577-b87ab66a0d76 ==============================
+[0m17:44:58.889828 [info ] [MainThread]: Running with dbt=1.9.4
+[0m17:44:58.889828 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'profiles_dir': 'C:\\Users\\alans\\.dbt', 'log_path': 'logs', 'debug': 'False', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'log_format': 'default', 'introspect': 'True', 'invocation_command': 'dbt init HR-Analytics-Proof-of-Concept-Group-2', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m17:46:02.301235 [debug] [MainThread]: Starter project path: C:\Users\alans\Documents\GitHub\HR-Analytics-Proof-of-Concept-Group-2\.venv\Lib\site-packages\dbt\include\starter_project
+[0m17:46:02.349615 [info ] [MainThread]: 
+Your new dbt project "HR_Analytics_Proof_of_Concept_Group_2" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m17:46:02.354041 [info ] [MainThread]: Setting up your profile.
