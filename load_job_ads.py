@@ -39,3 +39,9 @@ for field in occupation_fields:
         job["fetched_at"] = datetime.utcnow().isoformat()
         job["occupation_field"] = field
     all_job_ads.extend(jobs)
+
+# Ladda in i DuckDB via DLT
+load_info = pipeline.run(all_job_ads, table_name="job_ads")
+
+print("✔️ Job ads loaded!")
+print(load_info)
