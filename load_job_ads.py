@@ -16,3 +16,15 @@ occupation_fields = [
     "Hälso- och sjukvård",
     "Hotell, restaurang, storhushåll"
 ]
+
+API_URL = "https://jobsearch.api.jobtechdev.se/search"
+
+
+def fetch_jobs_for_field(field):
+    params = {
+        "occupation-field": field,
+        "limit": 100
+    }
+    response = requests.get(API_URL, params=params)
+    response.raise_for_status()
+    return response.json()["hits"]
