@@ -1,0 +1,1 @@
+print("Körning startad – allt funkar! 🚀")
