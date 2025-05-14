@@ -25,9 +25,9 @@ def jobtech_source():
             for job in data:
                 job["occupation_id"] = occupation_id
                 job["occupation_name"] = occupation_name
-            return data
+                yield job  # gör detta till en generator
 
-        yield job_ads
+        yield job_ads  # dlt förväntar sig generatorer här också
 
 
 # Skapa och kör pipeline
