@@ -3,6 +3,7 @@
 SELECT
   job_id,
   occupation_id,
+  occupation_field,
   {{ dbt_utils.generate_surrogate_key([
     'headline',
     'description_text_formatted',
