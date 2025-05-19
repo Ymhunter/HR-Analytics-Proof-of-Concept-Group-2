@@ -2,36 +2,43 @@ import streamlit as st
 import duckdb
 import pandas as pd
 
-# 🟢 Titel i dashboarden
+# Titel i dashboard
 st.title("Job Ads Dashboard")
 
-# 🟢 Anslut till din DuckDB-fil
+# 🔌 Anslut till DuckDB-filen (viktigt!)
 con = duckdb.connect("../job_ads_pipeline.duckdb")
 
-# 🔵 Ladda in unika occupation_fields
+# 🔍 Tillfällig kontroll – visar unika områden direkt från databasen
+st.write(con.execute("SELECT DISTINCT occupation_field FROM fct_job_ads").fetchdf())
+
+# 📥 Ladda in unika occupation_fields till en dropdown
 occupation_fields = con.execute("""
     SELECT DISTINCT occupation_field FROM fct_job_ads
 """).fetchdf()
 
+# Dropdown för att välja område
 selected_field = st.selectbox(
-    "Välj yrkesområde", occupation_fields["occupation_field"]
+    "Välj yrkesområde",
+    occupation_fields["occupation_field"]
 )
 
-# 🟢 Filtrera efter valt yrkesområde
+# 🔍 Filtrera data efter valt yrkesområde
 query = f"""
-    SELECT * FROM fct_job_ads
+    SELECT * 
+    FROM fct_job_ads
     WHERE occupation_field = '{selected_field}'
 """
 df = con.execute(query).fetchdf()
 
-# 🔴 Visa antal annonser som KPI
+# 📊 KPI: Antal annonser
 st.metric(label="Antal annonser", value=len(df))
 
-# 🟣 Visa hela tabellen
+# 📄 Visa tabellen
 st.dataframe(df)
 
-# 🟢 Topp 5 yrken inom valt område
+# 📊 Topp 5 yrken inom valt område
 st.subheader("Topp 5 yrken inom valt område")
+
 query = f"""
     SELECT d.occupation_name, COUNT(*) AS num_ads
     FROM fct_job_ads f
