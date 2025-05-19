@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: job_ads_data
+    schema: main
+    tables:
+      - name: job_ads_pipeline
