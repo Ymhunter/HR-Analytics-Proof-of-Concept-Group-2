@@ -73,3 +73,18 @@ df_contracts = con.execute(f"""
 """).fetchdf()
 
 st.bar_chart(df_contracts.set_index("employment_type"))
+
+# Topp 5 arbetsgivare
+st.subheader("Topp 5 arbetsgivare (baserat på antal annonser)")
+
+df_top_employers = con.execute(f"""
+    SELECT e.employer_name, COUNT(*) AS antal
+    FROM fct_job_ads f
+    JOIN dim_employer e ON f.employer_id = e.employer_id
+    WHERE f.occupation_field = '{selected_field}'
+    GROUP BY e.employer_name
+    ORDER BY antal DESC
+    LIMIT 5
+""").fetchdf()
+
+st.bar_chart(df_top_employers.set_index("employer_name"))
