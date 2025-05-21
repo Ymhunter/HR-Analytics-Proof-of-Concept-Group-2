@@ -1,52 +1,75 @@
 import streamlit as st
-import duckdb
 import pandas as pd
+import duckdb
 
-# Titel i dashboard
 st.title("Job Ads Dashboard")
 
-# 🔌 Anslut till DuckDB-filen (viktigt!)
-con = duckdb.connect("../job_ads_pipeline.duckdb")
+# Anslut till databasen
+con = duckdb.connect(database="./job_ads_pipeline.duckdb", read_only=True)
 
-# 🔍 Tillfällig kontroll – visar unika områden direkt från databasen
-st.write(con.execute("SELECT DISTINCT occupation_field FROM fct_job_ads").fetchdf())
-
-# 📥 Ladda in unika occupation_fields till en dropdown
+# Hämta alla yrkesområden
 occupation_fields = con.execute("""
     SELECT DISTINCT occupation_field FROM fct_job_ads
 """).fetchdf()
 
 # Dropdown för att välja område
 selected_field = st.selectbox(
-    "Välj yrkesområde",
-    occupation_fields["occupation_field"]
-)
+    "Välj yrkesområde", occupation_fields["occupation_field"])
 
-# 🔍 Filtrera data efter valt yrkesområde
-query = f"""
-    SELECT * 
-    FROM fct_job_ads
-    WHERE occupation_field = '{selected_field}'
-"""
-df = con.execute(query).fetchdf()
+# Visa grundläggande statistik
+st.subheader("Antal annonser")
+df_ads = con.execute(f"""
+    SELECT * FROM fct_job_ads WHERE occupation_field = '{selected_field}'
+""").fetchdf()
+st.metric(label="Totalt antal annonser", value=len(df_ads))
 
-# 📊 KPI: Antal annonser
-st.metric(label="Antal annonser", value=len(df))
+# Visa annonserna i tabell
+st.dataframe(df_ads)
 
-# 📄 Visa tabellen
-st.dataframe(df)
+# Topp 5 yrken (baserat på jobb-titel/headline)
+st.subheader("Topp 5 annonserade roller (baserat på titel)")
 
-# 📊 Topp 5 yrken inom valt område
-st.subheader("Topp 5 yrken inom valt område")
-
-query = f"""
-    SELECT d.occupation_name, COUNT(*) AS num_ads
+df_top_roles = con.execute(f"""
+    SELECT d.headline, COUNT(*) AS antal
     FROM fct_job_ads f
-    JOIN dim_occupation d ON f.occupation_id = d.occupation_id
-    WHERE f.occupation_field = '{selected_field}'
-    GROUP BY d.occupation_name
-    ORDER BY num_ads DESC
+    JOIN dim_job_details d ON f.job_details_id = d.job_details_id
+    WHERE f.occupation_field = '{selected_field}' AND d.headline IS NOT NULL
+    GROUP BY d.headline
+    ORDER BY antal DESC
     LIMIT 5
-"""
-df_top5 = con.execute(query).fetchdf()
-st.bar_chart(df_top5.set_index("occupation_name"))
+""").fetchdf()
+
+st.bar_chart(df_top_roles.set_index("headline"))
+
+
+st.bar_chart(df_top_roles.set_index("headline"))
+
+# Topp 5 städer
+st.subheader("Topp 5 städer")
+
+df_top_cities = con.execute(f"""
+    SELECT e.workplace_city, COUNT(*) AS antal
+    FROM fct_job_ads f
+    JOIN dim_employer e ON f.employer_id = e.employer_id
+    WHERE f.occupation_field = '{selected_field}' AND e.workplace_city IS NOT NULL
+    GROUP BY e.workplace_city
+    ORDER BY antal DESC
+    LIMIT 5
+""").fetchdf()
+
+st.bar_chart(df_top_cities.set_index("workplace_city"))
+
+
+# Anställningsformer
+st.subheader("Anställningsformer")
+
+df_contracts = con.execute(f"""
+    SELECT d.employment_type, COUNT(*) AS antal
+    FROM fct_job_ads f
+    JOIN dim_job_details d ON f.job_details_id = d.job_details_id
+    WHERE f.occupation_field = '{selected_field}' AND d.employment_type IS NOT NULL
+    GROUP BY d.employment_type
+    ORDER BY antal DESC
+""").fetchdf()
+
+st.bar_chart(df_contracts.set_index("employment_type"))
