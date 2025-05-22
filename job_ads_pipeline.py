@@ -1,18 +1,19 @@
 import dlt
 import requests
 
-# Lista med occupation field ID:n och beskrivningar
-OCCUPATION_FIELDS = {
-    "RPTn_bxG_ExZ": "Försäljning, inköp, marknadsföring",
-    "NYW6_mP6_vwf": "Hälso- och sjukvård",
-    "ScKy_FHB_7wT": "Hotell, restaurang, storhushåll"
-}
+# Hämta jobbanonser från olika yrkesområden
 
 
 @dlt.source
 def jobtech_source():
-    for occupation_id, occupation_name in OCCUPATION_FIELDS.items():
+    OCCUPATION_FIELDS = {
+        "RPtN_bxG_ExZ": "Försäljning, inköp, marknadsföring",
+        "NYW6_mP6_vwf": "Hälso- och sjukvård",
+        "ScKy_FHB_7wT": "Hotell, restaurang, storhushåll"
+    }
 
+    # Skapa en resurs för varje occupation field
+    def make_resource(occupation_id, occupation_name):
         @dlt.resource(name=f"job_ads_{occupation_id}", write_disposition="replace")
         def job_ads():
             url = f"https://jobsearch.api.jobtechdev.se/search?occupation-field={occupation_id}"
@@ -21,21 +22,24 @@ def jobtech_source():
             response.raise_for_status()
             data = response.json().get("hits", [])
 
-            # Lägg till extra fält så vi vet vilket område datan tillhör
-            for job in data:
-                job["occupation_id"] = occupation_id
-                job["occupation_name"] = occupation_name
-                yield job  # gör detta till en generator
+            for item in data:
+                item["occupation_id"] = occupation_id
+                item["occupation_name"] = occupation_name
+                yield item
 
-        yield job_ads  # dlt förväntar sig generatorer här också
+        return job_ads
+
+    # Returnera en lista med alla resurser
+    return [make_resource(occ_id, occ_name) for occ_id, occ_name in OCCUPATION_FIELDS.items()]
 
 
-# Skapa och kör pipeline
+# Skapa pipeline
 pipeline = dlt.pipeline(
     pipeline_name="job_ads_pipeline",
     destination="duckdb",
     dataset_name="raw_job_ads"
 )
 
+# Kör pipelinen
 load_info = pipeline.run(jobtech_source())
 print(load_info)
