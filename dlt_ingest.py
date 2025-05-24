@@ -9,3 +9,10 @@ pipeline = dlt.pipeline(
     destination="duckdb",
     dataset_name="job_ads"
 )
+# Definierar en lista med yrkesområden som projektgruppen fokuserar på.
+# Dessa används som sökparametrar för att hämta relevanta jobbannonser från JobTech API.
+occupations = [
+    "Försäljning, inköp, marknadsföring",
+    "Hälso och sjukvård",
+    "Hotell, restaurang, storhushåll"
+]
