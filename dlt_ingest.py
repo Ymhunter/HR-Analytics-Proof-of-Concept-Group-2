@@ -33,3 +33,10 @@ def fetch_job_ads():
         for ad in job_ads: 
             ad["occupation_group"] = occupation  # Taggar annonsen med yrkesområde för enklare analys
             yield ad # Returnerar en annons i taget 
+
+# Kör pipelinen med funktionen som hämtar jobbannonser
+load_info = pipeline.run(fetch_job_ads())
+
+# Bekräftelse på att datan laddats in till Duckdb
+print("Data har laddats till Duckdb!")
+print(load_info)
