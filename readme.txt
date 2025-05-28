@@ -26,3 +26,26 @@ Så här körs ingestion skriptet:
 python dlt_ingest.py
 
 Uppgift 4: 
+Data transformerades med hjälp av dbt i tre steg:
+
+Staging
+Rådata från Duckdb strukturerades om i en stg_job_ads-modell. Den extraherar och renodlar relevanta kolumner från tabellen job_ads_dataset.job_ads i Duckdb.
+
+Data Warehouse nivå:
+En vy kallad job_summary.sql skapade där vi grupperar och sammanfattar jobbannonserna per yrke och publiceringsdatum.
+
+Mart nivå:
+Slutligen skapade jag tre mart-modeller som filtrerar annonserna efter de tre yrkesområden vi ansvarar för:
+
+sales_mart.sql (Försäljning, inköp, marknadsföring)
+
+health_mart.sql (Hälso- och sjukvård)
+
+hospitality_mart.sql (Hotell, restaurang, storhushåll)
+
+Dessa modeller kommer senare att användas som underlag för visualiseringar i uppgift 5.
+
+För att köra scriptet
+dbt run
+
+Uppgift 5: 
