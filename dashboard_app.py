@@ -10,3 +10,10 @@ con = duckdb.connect("job_ads_pipeline.duckdb")
 st.title("Hr analysintsrument")
 st.subheader("Analys av jobbannonser per yrkesområde")
 
+# Dropdown meny för att välja mart-vy (yrkesområde)
+mart_val = st.selectbox("Välj yrkesområde:", [
+    "sales_mart", 
+    "health_mart", 
+    "hospitality_mart"
+])
+
