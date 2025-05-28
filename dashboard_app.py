@@ -17,3 +17,8 @@ mart_val = st.selectbox("Välj yrkesområde:", [
     "hospitality_mart"
 ])
 
+# Laddar data från vald mart vy
+df = con.execute(f"SELECT * FROM {mart_val}").fetchdf()
+
+# Visar tabellen
+st.dataframe(df)
