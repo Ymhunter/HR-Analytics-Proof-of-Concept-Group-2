@@ -2738,3 +2738,355 @@ drop view if exists "job_ads_pipeline"."main"."sales_mart__dbt_backup" cascade
 [0m20:29:23.132036 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002670EB78520>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002670EF4C050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002670EF4DDB0>]}
 [0m20:29:23.132400 [debug] [MainThread]: Flushing usage events
 [0m20:29:23.623330 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:45:31.361660 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017F5BCB4EC0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017F58C602D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017F58AE9A90>]}
+
+
+============================== 20:45:31.370922 | 07437e19-81d4-41c7-97a2-796fe40e9885 ==============================
+[0m20:45:31.370922 [info ] [MainThread]: Running with dbt=1.9.4
+[0m20:45:31.371616 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'profiles_dir': 'C:\\Users\\tobia\\.dbt', 'log_path': 'C:\\Code\\HR_Project_Task2\\logs', 'fail_fast': 'False', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'log_format': 'default', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt run --select health_mart', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m20:45:31.678772 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '07437e19-81d4-41c7-97a2-796fe40e9885', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017F5BEB3820>]}
+[0m20:45:31.741811 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '07437e19-81d4-41c7-97a2-796fe40e9885', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017F5DACF460>]}
+[0m20:45:31.746143 [info ] [MainThread]: Registered adapter: duckdb=1.9.3
+[0m20:45:32.104533 [debug] [MainThread]: checksum: b5597158181700c50f5bc1c71fe28b37a6fb85633dc5323885263678b6bc782c, vars: {}, profile: , target: , version: 1.9.4
+[0m20:45:32.336301 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m20:45:32.336805 [debug] [MainThread]: Partial parsing: added file: hr_project://models\example\Mart\mart\health_mart.sql
+[0m20:45:32.609157 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '07437e19-81d4-41c7-97a2-796fe40e9885', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017F5DDBA150>]}
+[0m20:45:32.660480 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Code\HR_Project_Task2\target\manifest.json
+[0m20:45:32.663301 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Code\HR_Project_Task2\target\semantic_manifest.json
+[0m20:45:32.702239 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '07437e19-81d4-41c7-97a2-796fe40e9885', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017F5D44D220>]}
+[0m20:45:32.702993 [info ] [MainThread]: Found 6 models, 4 data tests, 428 macros
+[0m20:45:32.703551 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '07437e19-81d4-41c7-97a2-796fe40e9885', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017F5F067E70>]}
+[0m20:45:32.706100 [info ] [MainThread]: 
+[0m20:45:32.706727 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m20:45:32.707511 [info ] [MainThread]: 
+[0m20:45:32.708176 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m20:45:32.709568 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_job_ads_pipeline'
+[0m20:45:32.905963 [debug] [ThreadPool]: Using duckdb connection "list_job_ads_pipeline"
+[0m20:45:32.906328 [debug] [ThreadPool]: On list_job_ads_pipeline: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "hr_project", "target_name": "dev", "connection_name": "list_job_ads_pipeline"} */
+
+    
+    select schema_name
+    from system.information_schema.schemata
+    
+    where lower(catalog_name) = '"job_ads_pipeline"'
+    
+  
+  
+[0m20:45:32.906565 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m20:45:33.044916 [debug] [ThreadPool]: SQL status: OK in 0.138 seconds
+[0m20:45:33.047332 [debug] [ThreadPool]: On list_job_ads_pipeline: Close
+[0m20:45:33.047942 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_job_ads_pipeline, now create_job_ads_pipeline_main)
+[0m20:45:33.048330 [debug] [ThreadPool]: Creating schema "database: "job_ads_pipeline"
+schema: "main"
+"
+[0m20:45:33.053915 [debug] [ThreadPool]: Using duckdb connection "create_job_ads_pipeline_main"
+[0m20:45:33.054287 [debug] [ThreadPool]: On create_job_ads_pipeline_main: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "hr_project", "target_name": "dev", "connection_name": "create_job_ads_pipeline_main"} */
+
+    
+        select type from duckdb_databases()
+        where lower(database_name)='job_ads_pipeline'
+        and type='sqlite'
+    
+  
+[0m20:45:33.054640 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m20:45:33.056105 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m20:45:33.057378 [debug] [ThreadPool]: Using duckdb connection "create_job_ads_pipeline_main"
+[0m20:45:33.057742 [debug] [ThreadPool]: On create_job_ads_pipeline_main: BEGIN
+[0m20:45:33.058260 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m20:45:33.058522 [debug] [ThreadPool]: Using duckdb connection "create_job_ads_pipeline_main"
+[0m20:45:33.058739 [debug] [ThreadPool]: On create_job_ads_pipeline_main: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "hr_project", "target_name": "dev", "connection_name": "create_job_ads_pipeline_main"} */
+
+    
+    
+        create schema if not exists "job_ads_pipeline"."main"
+    
+[0m20:45:33.059900 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m20:45:33.060688 [debug] [ThreadPool]: On create_job_ads_pipeline_main: COMMIT
+[0m20:45:33.060941 [debug] [ThreadPool]: Using duckdb connection "create_job_ads_pipeline_main"
+[0m20:45:33.061151 [debug] [ThreadPool]: On create_job_ads_pipeline_main: COMMIT
+[0m20:45:33.061518 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m20:45:33.061759 [debug] [ThreadPool]: On create_job_ads_pipeline_main: Close
+[0m20:45:33.066241 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_job_ads_pipeline_main'
+[0m20:45:33.070631 [debug] [ThreadPool]: Using duckdb connection "list_job_ads_pipeline_main"
+[0m20:45:33.070938 [debug] [ThreadPool]: On list_job_ads_pipeline_main: BEGIN
+[0m20:45:33.071400 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m20:45:33.072056 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m20:45:33.072384 [debug] [ThreadPool]: Using duckdb connection "list_job_ads_pipeline_main"
+[0m20:45:33.072597 [debug] [ThreadPool]: On list_job_ads_pipeline_main: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "hr_project", "target_name": "dev", "connection_name": "list_job_ads_pipeline_main"} */
+select
+      'job_ads_pipeline' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where lower(table_schema) = 'main'
+    and lower(table_catalog) = 'job_ads_pipeline'
+  
+[0m20:45:33.099177 [debug] [ThreadPool]: SQL status: OK in 0.026 seconds
+[0m20:45:33.101403 [debug] [ThreadPool]: On list_job_ads_pipeline_main: ROLLBACK
+[0m20:45:33.103539 [debug] [ThreadPool]: Failed to rollback 'list_job_ads_pipeline_main'
+[0m20:45:33.103872 [debug] [ThreadPool]: On list_job_ads_pipeline_main: Close
+[0m20:45:33.105069 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '07437e19-81d4-41c7-97a2-796fe40e9885', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017F5F35DE60>]}
+[0m20:45:33.105475 [debug] [MainThread]: Using duckdb connection "master"
+[0m20:45:33.105815 [debug] [MainThread]: On master: BEGIN
+[0m20:45:33.106133 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m20:45:33.106829 [debug] [MainThread]: SQL status: OK in 0.001 seconds
+[0m20:45:33.107212 [debug] [MainThread]: On master: COMMIT
+[0m20:45:33.107474 [debug] [MainThread]: Using duckdb connection "master"
+[0m20:45:33.107712 [debug] [MainThread]: On master: COMMIT
+[0m20:45:33.108121 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m20:45:33.108385 [debug] [MainThread]: On master: Close
+[0m20:45:33.115548 [debug] [Thread-1 (]: Began running node model.hr_project.health_mart
+[0m20:45:33.116154 [info ] [Thread-1 (]: 1 of 1 START sql view model main.health_mart ................................... [RUN]
+[0m20:45:33.117041 [debug] [Thread-1 (]: Acquiring new duckdb connection 'model.hr_project.health_mart'
+[0m20:45:33.117500 [debug] [Thread-1 (]: Began compiling node model.hr_project.health_mart
+[0m20:45:33.124302 [debug] [Thread-1 (]: Writing injected SQL for node "model.hr_project.health_mart"
+[0m20:45:33.125434 [debug] [Thread-1 (]: Began executing node model.hr_project.health_mart
+[0m20:45:33.165042 [debug] [Thread-1 (]: Writing runtime sql for node "model.hr_project.health_mart"
+[0m20:45:33.166289 [debug] [Thread-1 (]: Using duckdb connection "model.hr_project.health_mart"
+[0m20:45:33.166697 [debug] [Thread-1 (]: On model.hr_project.health_mart: BEGIN
+[0m20:45:33.167052 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m20:45:33.167856 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m20:45:33.168154 [debug] [Thread-1 (]: Using duckdb connection "model.hr_project.health_mart"
+[0m20:45:33.168535 [debug] [Thread-1 (]: On model.hr_project.health_mart: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "hr_project", "target_name": "dev", "node_id": "model.hr_project.health_mart"} */
+
+  
+  create view "job_ads_pipeline"."main"."health_mart__dbt_tmp" as (
+    
+
+SELECT
+  occupation_group,
+  occupation_label,
+  COUNT(*) AS antal_annonser,
+  MIN(publication_date) AS första_publicering,
+  MAX(application_deadline) AS sista_ansökan
+FROM "job_ads_pipeline"."main"."stg_job_ads"
+WHERE occupation_group = 'Hälso- och sjukvård'
+GROUP BY occupation_group, occupation_label
+ORDER BY antal_annonser DESC
+  );
+
+[0m20:45:33.171073 [debug] [Thread-1 (]: SQL status: OK in 0.002 seconds
+[0m20:45:33.176284 [debug] [Thread-1 (]: Using duckdb connection "model.hr_project.health_mart"
+[0m20:45:33.176631 [debug] [Thread-1 (]: On model.hr_project.health_mart: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "hr_project", "target_name": "dev", "node_id": "model.hr_project.health_mart"} */
+alter view "job_ads_pipeline"."main"."health_mart__dbt_tmp" rename to "health_mart"
+[0m20:45:33.177693 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m20:45:33.185775 [debug] [Thread-1 (]: On model.hr_project.health_mart: COMMIT
+[0m20:45:33.186155 [debug] [Thread-1 (]: Using duckdb connection "model.hr_project.health_mart"
+[0m20:45:33.186416 [debug] [Thread-1 (]: On model.hr_project.health_mart: COMMIT
+[0m20:45:33.192636 [debug] [Thread-1 (]: SQL status: OK in 0.006 seconds
+[0m20:45:33.263564 [debug] [Thread-1 (]: Using duckdb connection "model.hr_project.health_mart"
+[0m20:45:33.263985 [debug] [Thread-1 (]: On model.hr_project.health_mart: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "hr_project", "target_name": "dev", "node_id": "model.hr_project.health_mart"} */
+drop view if exists "job_ads_pipeline"."main"."health_mart__dbt_backup" cascade
+[0m20:45:33.264731 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m20:45:33.267030 [debug] [Thread-1 (]: On model.hr_project.health_mart: Close
+[0m20:45:33.268864 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '07437e19-81d4-41c7-97a2-796fe40e9885', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017F5DDF3DD0>]}
+[0m20:45:33.269450 [info ] [Thread-1 (]: 1 of 1 OK created sql view model main.health_mart .............................. [[32mOK[0m in 0.15s]
+[0m20:45:33.270273 [debug] [Thread-1 (]: Finished running node model.hr_project.health_mart
+[0m20:45:33.271436 [debug] [MainThread]: Using duckdb connection "master"
+[0m20:45:33.271694 [debug] [MainThread]: On master: BEGIN
+[0m20:45:33.271901 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m20:45:33.272373 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m20:45:33.272718 [debug] [MainThread]: On master: COMMIT
+[0m20:45:33.273004 [debug] [MainThread]: Using duckdb connection "master"
+[0m20:45:33.273238 [debug] [MainThread]: On master: COMMIT
+[0m20:45:33.273670 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m20:45:33.274273 [debug] [MainThread]: On master: Close
+[0m20:45:33.274566 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m20:45:33.274764 [debug] [MainThread]: Connection 'create_job_ads_pipeline_main' was properly closed.
+[0m20:45:33.274947 [debug] [MainThread]: Connection 'list_job_ads_pipeline_main' was properly closed.
+[0m20:45:33.275121 [debug] [MainThread]: Connection 'model.hr_project.health_mart' was properly closed.
+[0m20:45:33.275353 [info ] [MainThread]: 
+[0m20:45:33.275680 [info ] [MainThread]: Finished running 1 view model in 0 hours 0 minutes and 0.57 seconds (0.57s).
+[0m20:45:33.276345 [debug] [MainThread]: Command end result
+[0m20:45:33.297424 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Code\HR_Project_Task2\target\manifest.json
+[0m20:45:33.301830 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Code\HR_Project_Task2\target\semantic_manifest.json
+[0m20:45:33.309698 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Code\HR_Project_Task2\target\run_results.json
+[0m20:45:33.310253 [info ] [MainThread]: 
+[0m20:45:33.313018 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m20:45:33.314280 [info ] [MainThread]: 
+[0m20:45:33.315050 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[0m20:45:33.316542 [debug] [MainThread]: Command `dbt run` succeeded at 20:45:33.316352 after 2.31 seconds
+[0m20:45:33.316928 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017F5F078520>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017F5F468C30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017F5F468AF0>]}
+[0m20:45:33.317430 [debug] [MainThread]: Flushing usage events
+[0m20:45:33.793863 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:52:41.078981 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000164C7334EC0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000164C62F02D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000164C617DA90>]}
+
+
+============================== 20:52:41.085315 | aa6e77ad-e144-4850-abcb-5bb067952019 ==============================
+[0m20:52:41.085315 [info ] [MainThread]: Running with dbt=1.9.4
+[0m20:52:41.086122 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'debug': 'False', 'log_path': 'C:\\Code\\HR_Project_Task2\\logs', 'version_check': 'True', 'profiles_dir': 'C:\\Users\\tobia\\.dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt run --select hospitality_mart', 'introspect': 'True', 'static_parser': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m20:52:41.344223 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'aa6e77ad-e144-4850-abcb-5bb067952019', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000164C752F820>]}
+[0m20:52:41.406177 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'aa6e77ad-e144-4850-abcb-5bb067952019', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000164C91CF460>]}
+[0m20:52:41.410656 [info ] [MainThread]: Registered adapter: duckdb=1.9.3
+[0m20:52:41.774718 [debug] [MainThread]: checksum: b5597158181700c50f5bc1c71fe28b37a6fb85633dc5323885263678b6bc782c, vars: {}, profile: , target: , version: 1.9.4
+[0m20:52:41.962663 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m20:52:41.963254 [debug] [MainThread]: Partial parsing: added file: hr_project://models\example\Mart\mart\hospitality_mart.sql
+[0m20:52:42.244204 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'aa6e77ad-e144-4850-abcb-5bb067952019', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000164C94B8550>]}
+[0m20:52:42.300218 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Code\HR_Project_Task2\target\manifest.json
+[0m20:52:42.303455 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Code\HR_Project_Task2\target\semantic_manifest.json
+[0m20:52:42.340760 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'aa6e77ad-e144-4850-abcb-5bb067952019', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000164C7ACD220>]}
+[0m20:52:42.341245 [info ] [MainThread]: Found 7 models, 4 data tests, 428 macros
+[0m20:52:42.341753 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'aa6e77ad-e144-4850-abcb-5bb067952019', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000164C9763E70>]}
+[0m20:52:42.344181 [info ] [MainThread]: 
+[0m20:52:42.344796 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m20:52:42.345265 [info ] [MainThread]: 
+[0m20:52:42.345970 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m20:52:42.347016 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_job_ads_pipeline'
+[0m20:52:42.507313 [debug] [ThreadPool]: Using duckdb connection "list_job_ads_pipeline"
+[0m20:52:42.507735 [debug] [ThreadPool]: On list_job_ads_pipeline: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "hr_project", "target_name": "dev", "connection_name": "list_job_ads_pipeline"} */
+
+    
+    select schema_name
+    from system.information_schema.schemata
+    
+    where lower(catalog_name) = '"job_ads_pipeline"'
+    
+  
+  
+[0m20:52:42.507994 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m20:52:42.650808 [debug] [ThreadPool]: SQL status: OK in 0.143 seconds
+[0m20:52:42.653256 [debug] [ThreadPool]: On list_job_ads_pipeline: Close
+[0m20:52:42.653982 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_job_ads_pipeline, now create_job_ads_pipeline_main)
+[0m20:52:42.654455 [debug] [ThreadPool]: Creating schema "database: "job_ads_pipeline"
+schema: "main"
+"
+[0m20:52:42.660375 [debug] [ThreadPool]: Using duckdb connection "create_job_ads_pipeline_main"
+[0m20:52:42.660763 [debug] [ThreadPool]: On create_job_ads_pipeline_main: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "hr_project", "target_name": "dev", "connection_name": "create_job_ads_pipeline_main"} */
+
+    
+        select type from duckdb_databases()
+        where lower(database_name)='job_ads_pipeline'
+        and type='sqlite'
+    
+  
+[0m20:52:42.661025 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m20:52:42.662625 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m20:52:42.664384 [debug] [ThreadPool]: Using duckdb connection "create_job_ads_pipeline_main"
+[0m20:52:42.664736 [debug] [ThreadPool]: On create_job_ads_pipeline_main: BEGIN
+[0m20:52:42.665237 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m20:52:42.665513 [debug] [ThreadPool]: Using duckdb connection "create_job_ads_pipeline_main"
+[0m20:52:42.665756 [debug] [ThreadPool]: On create_job_ads_pipeline_main: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "hr_project", "target_name": "dev", "connection_name": "create_job_ads_pipeline_main"} */
+
+    
+    
+        create schema if not exists "job_ads_pipeline"."main"
+    
+[0m20:52:42.667216 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m20:52:42.668275 [debug] [ThreadPool]: On create_job_ads_pipeline_main: COMMIT
+[0m20:52:42.668679 [debug] [ThreadPool]: Using duckdb connection "create_job_ads_pipeline_main"
+[0m20:52:42.668903 [debug] [ThreadPool]: On create_job_ads_pipeline_main: COMMIT
+[0m20:52:42.669391 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m20:52:42.669838 [debug] [ThreadPool]: On create_job_ads_pipeline_main: Close
+[0m20:52:42.675200 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_job_ads_pipeline_main'
+[0m20:52:42.680129 [debug] [ThreadPool]: Using duckdb connection "list_job_ads_pipeline_main"
+[0m20:52:42.680488 [debug] [ThreadPool]: On list_job_ads_pipeline_main: BEGIN
+[0m20:52:42.680723 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m20:52:42.681280 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m20:52:42.681557 [debug] [ThreadPool]: Using duckdb connection "list_job_ads_pipeline_main"
+[0m20:52:42.681791 [debug] [ThreadPool]: On list_job_ads_pipeline_main: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "hr_project", "target_name": "dev", "connection_name": "list_job_ads_pipeline_main"} */
+select
+      'job_ads_pipeline' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where lower(table_schema) = 'main'
+    and lower(table_catalog) = 'job_ads_pipeline'
+  
+[0m20:52:42.713181 [debug] [ThreadPool]: SQL status: OK in 0.031 seconds
+[0m20:52:42.715195 [debug] [ThreadPool]: On list_job_ads_pipeline_main: ROLLBACK
+[0m20:52:42.717488 [debug] [ThreadPool]: Failed to rollback 'list_job_ads_pipeline_main'
+[0m20:52:42.717908 [debug] [ThreadPool]: On list_job_ads_pipeline_main: Close
+[0m20:52:42.719727 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'aa6e77ad-e144-4850-abcb-5bb067952019', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000164C9A81640>]}
+[0m20:52:42.720199 [debug] [MainThread]: Using duckdb connection "master"
+[0m20:52:42.720462 [debug] [MainThread]: On master: BEGIN
+[0m20:52:42.720687 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m20:52:42.721179 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m20:52:42.721443 [debug] [MainThread]: On master: COMMIT
+[0m20:52:42.721662 [debug] [MainThread]: Using duckdb connection "master"
+[0m20:52:42.721872 [debug] [MainThread]: On master: COMMIT
+[0m20:52:42.722237 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m20:52:42.722489 [debug] [MainThread]: On master: Close
+[0m20:52:42.728186 [debug] [Thread-1 (]: Began running node model.hr_project.hospitality_mart
+[0m20:52:42.728717 [info ] [Thread-1 (]: 1 of 1 START sql view model main.hospitality_mart .............................. [RUN]
+[0m20:52:42.729485 [debug] [Thread-1 (]: Acquiring new duckdb connection 'model.hr_project.hospitality_mart'
+[0m20:52:42.729913 [debug] [Thread-1 (]: Began compiling node model.hr_project.hospitality_mart
+[0m20:52:42.736473 [debug] [Thread-1 (]: Writing injected SQL for node "model.hr_project.hospitality_mart"
+[0m20:52:42.737742 [debug] [Thread-1 (]: Began executing node model.hr_project.hospitality_mart
+[0m20:52:42.776650 [debug] [Thread-1 (]: Writing runtime sql for node "model.hr_project.hospitality_mart"
+[0m20:52:42.778194 [debug] [Thread-1 (]: Using duckdb connection "model.hr_project.hospitality_mart"
+[0m20:52:42.778571 [debug] [Thread-1 (]: On model.hr_project.hospitality_mart: BEGIN
+[0m20:52:42.778857 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m20:52:42.779826 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m20:52:42.780184 [debug] [Thread-1 (]: Using duckdb connection "model.hr_project.hospitality_mart"
+[0m20:52:42.780459 [debug] [Thread-1 (]: On model.hr_project.hospitality_mart: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "hr_project", "target_name": "dev", "node_id": "model.hr_project.hospitality_mart"} */
+
+  
+  create view "job_ads_pipeline"."main"."hospitality_mart__dbt_tmp" as (
+    
+
+SELECT
+  occupation_group,
+  occupation_label,
+  COUNT(*) AS antal_annonser,
+  MIN(publication_date) AS första_publicering,
+  MAX(application_deadline) AS sista_ansökan
+FROM "job_ads_pipeline"."main"."stg_job_ads"
+WHERE occupation_group = 'Hotell, restaurang, storhushåll'
+GROUP BY occupation_group, occupation_label
+ORDER BY antal_annonser DESC
+  );
+
+[0m20:52:42.783113 [debug] [Thread-1 (]: SQL status: OK in 0.002 seconds
+[0m20:52:42.788308 [debug] [Thread-1 (]: Using duckdb connection "model.hr_project.hospitality_mart"
+[0m20:52:42.788686 [debug] [Thread-1 (]: On model.hr_project.hospitality_mart: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "hr_project", "target_name": "dev", "node_id": "model.hr_project.hospitality_mart"} */
+alter view "job_ads_pipeline"."main"."hospitality_mart__dbt_tmp" rename to "hospitality_mart"
+[0m20:52:42.789774 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m20:52:42.798233 [debug] [Thread-1 (]: On model.hr_project.hospitality_mart: COMMIT
+[0m20:52:42.798680 [debug] [Thread-1 (]: Using duckdb connection "model.hr_project.hospitality_mart"
+[0m20:52:42.798964 [debug] [Thread-1 (]: On model.hr_project.hospitality_mart: COMMIT
+[0m20:52:42.805866 [debug] [Thread-1 (]: SQL status: OK in 0.006 seconds
+[0m20:52:42.877724 [debug] [Thread-1 (]: Using duckdb connection "model.hr_project.hospitality_mart"
+[0m20:52:42.878124 [debug] [Thread-1 (]: On model.hr_project.hospitality_mart: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "hr_project", "target_name": "dev", "node_id": "model.hr_project.hospitality_mart"} */
+drop view if exists "job_ads_pipeline"."main"."hospitality_mart__dbt_backup" cascade
+[0m20:52:42.878851 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m20:52:42.880816 [debug] [Thread-1 (]: On model.hr_project.hospitality_mart: Close
+[0m20:52:42.882533 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'aa6e77ad-e144-4850-abcb-5bb067952019', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000164C94F7E90>]}
+[0m20:52:42.883084 [info ] [Thread-1 (]: 1 of 1 OK created sql view model main.hospitality_mart ......................... [[32mOK[0m in 0.15s]
+[0m20:52:42.883912 [debug] [Thread-1 (]: Finished running node model.hr_project.hospitality_mart
+[0m20:52:42.885259 [debug] [MainThread]: Using duckdb connection "master"
+[0m20:52:42.885557 [debug] [MainThread]: On master: BEGIN
+[0m20:52:42.885766 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m20:52:42.886355 [debug] [MainThread]: SQL status: OK in 0.001 seconds
+[0m20:52:42.886609 [debug] [MainThread]: On master: COMMIT
+[0m20:52:42.886832 [debug] [MainThread]: Using duckdb connection "master"
+[0m20:52:42.887032 [debug] [MainThread]: On master: COMMIT
+[0m20:52:42.887390 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m20:52:42.887631 [debug] [MainThread]: On master: Close
+[0m20:52:42.887919 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m20:52:42.888138 [debug] [MainThread]: Connection 'create_job_ads_pipeline_main' was properly closed.
+[0m20:52:42.888323 [debug] [MainThread]: Connection 'list_job_ads_pipeline_main' was properly closed.
+[0m20:52:42.888499 [debug] [MainThread]: Connection 'model.hr_project.hospitality_mart' was properly closed.
+[0m20:52:42.888728 [info ] [MainThread]: 
+[0m20:52:42.889162 [info ] [MainThread]: Finished running 1 view model in 0 hours 0 minutes and 0.54 seconds (0.54s).
+[0m20:52:42.890143 [debug] [MainThread]: Command end result
+[0m20:52:42.912607 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Code\HR_Project_Task2\target\manifest.json
+[0m20:52:42.915838 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Code\HR_Project_Task2\target\semantic_manifest.json
+[0m20:52:42.926072 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Code\HR_Project_Task2\target\run_results.json
+[0m20:52:42.926662 [info ] [MainThread]: 
+[0m20:52:42.927611 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m20:52:42.928068 [info ] [MainThread]: 
+[0m20:52:42.928569 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[0m20:52:42.930069 [debug] [MainThread]: Command `dbt run` succeeded at 20:52:42.929907 after 2.03 seconds
+[0m20:52:42.930424 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000164C9778470>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000164C9B64C30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000164C9B64B90>]}
+[0m20:52:42.930773 [debug] [MainThread]: Flushing usage events
+[0m20:52:43.357737 [debug] [MainThread]: An error was encountered while trying to flush usage events
