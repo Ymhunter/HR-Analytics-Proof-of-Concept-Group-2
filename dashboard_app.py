@@ -31,3 +31,8 @@ st.bar_chart(occupation_counts.set_index("Yrkesroll"))
 st.subheader("Topp 5 yrkesroller med flest annonser")
 top_5 = occupation_counts.sort_values("Antal annonser", ascending=False).head(5)
 st.bar_chart(top_5.set_index("Yrkesroll"))
+
+st.subheader("Antal annonser per annonseringsperiod")
+duration_counts = df["duration_label"].value_counts().reset_index()
+duration_counts.columns = ["Annonseringsperiod", "Antal annonser"]
+st.bar_chart(duration_counts.set_index("Annonseringsperiod"))
