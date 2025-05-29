@@ -22,3 +22,8 @@ df = con.execute(f"SELECT * FROM {mart_val}").fetchdf()
 
 # Visar tabellen
 st.dataframe(df)
+
+st.subheader("Antal annonser per yrkesroll")
+occupation_counts = df["occupation_label"].value_counts().reset_index()
+occupation_counts.columns = ["Yrkesroll", "Antal annonser"]
+st.bar_chart(occupation_counts.set_index("Yrkesroll"))
