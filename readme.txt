@@ -49,3 +49,6 @@ För att köra scriptet
 dbt run
 
 Uppgift 5: 
+började med en mockad job_ads.csv eftersom det var ett snabbt sätt att få struktur och relationer på plats i stg_job_ads.sql och mart-modellerna.
+Det gjorde det enklare att testa dbt pipelinen och dashboarden utan att vara beroende av api anrop 
+När flödet fungerade ersattes mocken med korrekt ingestion från jobtech apin i dlt_ingest.py

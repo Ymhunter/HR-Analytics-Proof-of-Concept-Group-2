@@ -3,7 +3,7 @@
 SELECT
     id,
     headline,
-    employer__name AS employer_name,
+    employer_name AS employer_name,
     workplace_address__region AS region,
     occupation_group__label AS occupation_group,
     description__text AS description_text,
@@ -13,4 +13,5 @@ SELECT
     application_deadline,
     occupation__label AS occupation_label,
     removed
-FROM job_ads_dataset.job_ads
+
+
