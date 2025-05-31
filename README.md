@@ -33,7 +33,7 @@ Detta projekt är ett proof of concept för att hjälpa rekryterare på ett HR-f
 ### 1. 🛠️ **Extraktion – DLT + Jobtech API**
 - 📄 **Kod:** `dlt_pipeline/load_jobtech.py`
 - 🔗 **API:** [https://jobsearch.api.jobtechdev.se/search](https://jobsearch.api.jobtechdev.se/search)
-- 📥 **Filter:** yrkesområde (`occupation-field`)
+- 📥 **Filter:** yrkesområde (`Försäljning, inköp, marknadsföring,Hälso- och sjukvårdHotell, restaurang, storhushåll`)
 - 🗃️ **Output:** Lagrar rådata i DuckDB, `raw` schema
 
 ### 2. 🗂️ **Lagring – DuckDB**
