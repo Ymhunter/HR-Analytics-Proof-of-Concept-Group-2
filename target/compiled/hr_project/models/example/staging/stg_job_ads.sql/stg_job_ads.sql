@@ -3,7 +3,7 @@
 SELECT
     id,
     headline,
-    employer_name AS employer_name,
+    employer__name AS employer_name,
     workplace_address__region AS region,
     occupation_group__label AS occupation_group,
     description__text AS description_text,
