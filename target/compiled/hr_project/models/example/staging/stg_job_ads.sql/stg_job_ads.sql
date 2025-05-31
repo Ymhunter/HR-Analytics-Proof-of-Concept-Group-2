@@ -13,4 +13,4 @@ SELECT
     application_deadline,
     occupation__label AS occupation_label,
     removed
-FROM read_csv_auto('job_ads.csv', HEADER=TRUE)
+FROM job_ads_dataset.job_ads
