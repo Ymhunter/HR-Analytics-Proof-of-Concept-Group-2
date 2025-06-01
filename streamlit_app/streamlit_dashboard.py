@@ -5,7 +5,7 @@ import duckdb
 st.title("Job Ads Dashboard")
 
 # Anslut till databasen
-con = duckdb.connect(database="./job_ads_pipeline.duckdb", read_only=True)
+con = duckdb.connect(database="../job_ads_pipeline.duckdb", read_only=True)
 
 # Hämta alla yrkesområden
 occupation_fields = con.execute("""
@@ -14,7 +14,8 @@ occupation_fields = con.execute("""
 
 # Dropdown för att välja område
 selected_field = st.selectbox(
-    "Välj yrkesområde", occupation_fields["occupation_field"])
+    "Välj yrkesområde", occupation_fields["occupation_field"]
+)
 
 # Visa grundläggande statistik
 st.subheader("Antal annonser")
@@ -27,8 +28,7 @@ st.metric(label="Totalt antal annonser", value=len(df_ads))
 st.dataframe(df_ads)
 
 # Topp 5 yrken (baserat på jobb-titel/headline)
-st.subheader("Topp 5 annonserade roller (baserat på titel)")
-
+st.subheader("Topp 5 utannonserade roller (baserat på titel)")
 df_top_roles = con.execute(f"""
     SELECT d.headline, COUNT(*) AS antal
     FROM fct_job_ads f
@@ -38,15 +38,10 @@ df_top_roles = con.execute(f"""
     ORDER BY antal DESC
     LIMIT 5
 """).fetchdf()
-
-st.bar_chart(df_top_roles.set_index("headline"))
-
-
 st.bar_chart(df_top_roles.set_index("headline"))
 
 # Topp 5 städer
 st.subheader("Topp 5 städer")
-
 df_top_cities = con.execute(f"""
     SELECT e.workplace_city, COUNT(*) AS antal
     FROM fct_job_ads f
@@ -56,13 +51,10 @@ df_top_cities = con.execute(f"""
     ORDER BY antal DESC
     LIMIT 5
 """).fetchdf()
-
 st.bar_chart(df_top_cities.set_index("workplace_city"))
-
 
 # Anställningsformer
 st.subheader("Anställningsformer")
-
 df_contracts = con.execute(f"""
     SELECT d.employment_type, COUNT(*) AS antal
     FROM fct_job_ads f
@@ -71,12 +63,10 @@ df_contracts = con.execute(f"""
     GROUP BY d.employment_type
     ORDER BY antal DESC
 """).fetchdf()
-
 st.bar_chart(df_contracts.set_index("employment_type"))
 
 # Topp 5 arbetsgivare
 st.subheader("Topp 5 arbetsgivare (baserat på antal annonser)")
-
 df_top_employers = con.execute(f"""
     SELECT e.employer_name, COUNT(*) AS antal
     FROM fct_job_ads f
@@ -86,5 +76,4 @@ df_top_employers = con.execute(f"""
     ORDER BY antal DESC
     LIMIT 5
 """).fetchdf()
-
 st.bar_chart(df_top_employers.set_index("employer_name"))

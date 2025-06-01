@@ -2,4 +2,4 @@
 
 SELECT *
 FROM {{ ref('fct_job_ads') }}
-WHERE occupation_field = 'Hotell, restaurang, storhushåll'
+WHERE occupation_field = 'Hotell, restaurang, storhushÃ¥ll'
