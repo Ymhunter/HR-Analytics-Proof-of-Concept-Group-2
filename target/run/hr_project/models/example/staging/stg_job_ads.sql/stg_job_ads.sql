@@ -1,6 +1,6 @@
 
   
-  create view "job_ads"."main"."stg_job_ads__dbt_tmp" as (
+  create view "job_ads_pipeline"."main"."stg_job_ads__dbt_tmp" as (
     
 
 SELECT

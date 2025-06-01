@@ -4,7 +4,7 @@
     
 
     create  table
-      "job_ads"."main"."my_first_dbt_model__dbt_tmp"
+      "job_ads_pipeline"."main"."my_first_dbt_model__dbt_tmp"
   
     as (
       /*

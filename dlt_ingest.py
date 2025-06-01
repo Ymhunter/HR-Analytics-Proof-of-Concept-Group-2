@@ -4,14 +4,12 @@ import pandas as pd # För att hantera json som en tabell
 import dlt  # dlt biblioteket som hanterar dataloading
 
 pipeline = dlt.pipeline(
-    pipeline_name="job_ads_pipeline",
+    pipeline_name="job_ads",
     destination="duckdb",
-    dataset_name="job_ads"
+    dataset_name="ads_dataset"       
 )
 
-# Sätt korrekt sökväg till DuckDB
 pipeline.destination_client().database = "job_ads.duckdb"
-
 
 # Yrkesområden och id
 occupations = [
