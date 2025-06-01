@@ -1,6 +1,6 @@
 
   
-  create view "job_ads_pipeline"."main"."stg_job_ads__dbt_tmp" as (
+  create view "job_ads"."main"."stg_job_ads__dbt_tmp" as (
     
 
 SELECT
@@ -16,5 +16,5 @@ SELECT
     application_deadline,
     occupation__label AS occupation_label,
     removed
-FROM job_ads_dataset.job_ads
+FROM job_ads
   );

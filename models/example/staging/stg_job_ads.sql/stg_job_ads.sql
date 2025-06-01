@@ -13,6 +13,8 @@ SELECT
     application_deadline,
     occupation__label AS occupation_label,
     removed
-FROM job_ads_dataset.job_ads
+FROM job_ads
+
+
 
 

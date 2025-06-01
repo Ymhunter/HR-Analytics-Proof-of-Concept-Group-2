@@ -4,7 +4,7 @@ import duckdb
 import pandas as pd
 
 # Skapar en anslutning till Duckdb databasen
-con = duckdb.connect("job_ads_pipeline.duckdb")
+con = duckdb.connect("job_ads.duckdb")
 
 # Sätter en titel och underrubrik för dashboarden
 st.title("Hr analysinstrument")

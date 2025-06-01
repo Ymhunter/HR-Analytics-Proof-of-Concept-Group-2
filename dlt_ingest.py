@@ -3,12 +3,15 @@ import duckdb # För att spara datan i Duckdb
 import pandas as pd # För att hantera json som en tabell
 import dlt  # dlt biblioteket som hanterar dataloading
 
-# Skapar pipeline med namn och målformat (Ducckdb)
 pipeline = dlt.pipeline(
     pipeline_name="job_ads_pipeline",
     destination="duckdb",
     dataset_name="job_ads"
 )
+
+# Sätt korrekt sökväg till DuckDB
+pipeline.destination_client().database = "job_ads.duckdb"
+
 
 # Yrkesområden och id
 occupations = [
@@ -35,9 +38,10 @@ def fetch_job_ads():
             ad["occupation_field"] = occupation  # Lägger till yrkesområde i varje annons
             yield ad # Returnerar en annons i taget som en rad i pipelinen
 
-# Kör pipelinen och sparae annonserna till duckdb
-load_info = pipeline.run(fetch_job_ads(), table_name="job_ads")
+if __name__ == "__main__":
+    # Kör pipelinen och spara annonserna till duckdb
+    load_info = pipeline.run(fetch_job_ads(), table_name="job_ads")
 
-# Skriver ut bekräftelse i terminalen så vi vet att allt gick bra
-print("\u2705 Data har laddats in i DuckDB.")
-print(load_info) # Visar en sammanfattning av hur många rader som laddades in etc
+    # Skriv ut bekräftelse i terminalen
+    print("Data har laddats in i DuckDB.")
+    print(load_info)

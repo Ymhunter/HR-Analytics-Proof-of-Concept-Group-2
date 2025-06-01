@@ -1,21 +1,12 @@
-
 version: 2
 
 models:
-  - name: my_first_dbt_model
-    description: "A starter dbt model"
-    columns:
-      - name: id
-        description: "The primary key for this table"
-        data_tests:
-          - unique
-          - not_null
-
-  - name: my_second_dbt_model
-    description: "A starter dbt model"
-    columns:
-      - name: id
-        description: "The primary key for this table"
-        data_tests:
-          - unique
-          - not_null
+  - name: stg_job_ads
+  - name: dim_occupation
+  - name: dim_employer
+  - name: dim_job_details
+  - name: dim_auxilliary_attributes
+  - name: fct_job_ads
+  - name: sales_mart
+  - name: health_mart
+  - name: hospitality_mart
