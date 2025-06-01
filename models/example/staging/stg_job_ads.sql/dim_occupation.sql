@@ -1,10 +1,11 @@
 {{ config(materialized='table') }}
 
 SELECT
+    id,
+    occupation_group__label,
     occupation_label,
-    occupation_group,
     publication_date,
-    application_deadline,
-    duration_label
+    employer__organization_number,
+    working_hours
 FROM {{ ref('stg_job_ads') }}
-WHERE occupation_label IS NOT NULL
+WHERE id IS NOT NULL

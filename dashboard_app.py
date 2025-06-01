@@ -46,16 +46,17 @@ st.bar_chart(duration_counts.set_index("Annonsperiod"))
 
 # Visualisering 4:  Räknar antal annonser per datum då de först publicerades
 st.subheader("Antal annonser över tid")
-df['earliest_publication'] = pd.to_datetime(df['earliest_publication'])
-time_counts = df['earliest_publication'].dt.to_period('M').value_counts().sort_index()
+df['publication_date'] = pd.to_datetime(df['publication_date'])
+time_counts = df['publication_date'].dt.to_period('M').value_counts().sort_index()
 time_counts.index = time_counts.index.to_timestamp()
 st.line_chart(time_counts)
 
 # Visualisering 5: Antal annonser per stad
 st.subheader("Antal annonser per stad")
-if "region" in df.columns:
-    city_counts = df["region"].value_counts().reset_index()
+if "workplace_city" in df.columns:
+    city_counts = df["workplace_city"].value_counts().reset_index()
     city_counts.columns = ["Stad", "Antal annonser"]
     st.bar_chart(city_counts.set_index("Stad"))
 else:
     st.warning("Inget fält för stad hittades i datan.")
+

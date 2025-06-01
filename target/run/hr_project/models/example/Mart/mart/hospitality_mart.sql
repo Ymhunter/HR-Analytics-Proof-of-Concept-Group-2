@@ -1,16 +1,25 @@
 
   
-  create view "job_ads"."main"."hospitality_mart__dbt_tmp" as (
+    
     
 
-SELECT
-  occupation_label AS occupation,
-  COUNT(*) AS number_of_ads,
-  duration_label,
-  MIN(publication_date) AS earliest_publication,
-  MAX(application_deadline) AS latest_deadline
-FROM "job_ads"."main"."stg_job_ads"
-WHERE occupation_group = 'Hotell, restaurang, storhushåll'
-GROUP BY occupation_label, duration_label
-ORDER BY number_of_ads DESC
-  );
+    create  table
+      "job_ads"."main"."hospitality_mart__dbt_tmp"
+  
+    as (
+      
+
+SELECT *
+FROM "job_ads"."main"."fct_job_ads"
+WHERE occupation_group__label IN (
+    'Hotell, restaurang, storhushåll',
+    'Kockar och kallskänkor',
+    'Hotellreceptionister m.fl.',
+    'Restaurang- och köksbiträden m.fl.',
+    'Hovmästare och servitörer',
+    'Kafé- och konditoribiträden',
+    'Pizzabagare m.fl.'
+)
+    );
+  
+  

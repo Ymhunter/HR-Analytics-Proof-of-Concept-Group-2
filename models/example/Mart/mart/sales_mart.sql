@@ -1,12 +1,16 @@
-{{ config(materialized='view') }}
+{{ config(materialized='table') }}
 
-SELECT
-  occupation_label AS occupation,
-  COUNT(*) AS number_of_ads,
-  duration_label,
-  MIN(publication_date) AS earliest_publication,
-  MAX(application_deadline) AS latest_deadline
-FROM {{ ref('stg_job_ads') }}
-WHERE occupation_group = 'Försäljning, inköp, marknadsföring'
-GROUP BY occupation_label, duration_label
-ORDER BY number_of_ads DESC
+SELECT *
+FROM {{ ref('fct_job_ads') }}
+WHERE occupation_group__label IN (
+    'Företagssäljare',
+    'Butikssäljare, fackhandel',
+    'Butikssäljare, dagligvaror',
+    'Eventsäljare och butiksdemonstratörer m.fl.',
+    'Säljande butikschefer och avdelningschefer i butik',
+    'Marknads- och försäljningsassistenter',
+    'Inköps- och orderassistenter',
+    'Inköpare och upphandlare',
+    'Resesäljare och trafikassistenter m.fl.',
+    'Marknadsanalytiker och marknadsförare m.fl.'
+)
