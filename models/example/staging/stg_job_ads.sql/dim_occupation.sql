@@ -1,8 +1,10 @@
 {{ config(materialized='table') }}
 
-SELECT DISTINCT
-    occupation_id,
-    occupation_label AS occupation,
+SELECT
+    occupation_label,
     occupation_group,
-    occupation_field
+    publication_date,
+    application_deadline,
+    duration_label
 FROM {{ ref('stg_job_ads') }}
+WHERE occupation_label IS NOT NULL

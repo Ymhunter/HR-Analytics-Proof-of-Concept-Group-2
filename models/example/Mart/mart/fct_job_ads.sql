@@ -1,12 +1,12 @@
 {{ config(materialized='table') }}
 
 SELECT
-    occupation_id,
-    job_details_id,
-    employer_id,
-    auxilliary_attributes_id,
-    number_of_vacancies AS vacancies,
-    relevance,
-    application_deadline
+    id,
+    occupation_label,
+    duration_label,
+    publication_date,
+    application_deadline,
+    working_hours,
+    region
 FROM {{ ref('stg_job_ads') }}
-WHERE occupation_id IS NOT NULL
+WHERE occupation_label IS NOT NULL

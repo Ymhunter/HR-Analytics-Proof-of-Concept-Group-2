@@ -1,13 +1,8 @@
 {{ config(materialized='table') }}
 
-SELECT DISTINCT
-    employer_id,
+SELECT
     employer_name,
-    employer_workplace,
-    employer_organization_number,
-    region AS workplace_region,
-    municipality AS workplace_city,
-    workplace_address AS workplace_street_address,
-    workplace_postcode,
-    workplace_country
+    employer_url,
+    employer__organization_number
 FROM {{ ref('stg_job_ads') }}
+WHERE employer_name IS NOT NULL

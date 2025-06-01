@@ -1,8 +1,9 @@
 {{ config(materialized='table') }}
 
-SELECT DISTINCT
-    auxilliary_attributes_id,
-    has_driving_license AS driver_license,
-    needs_car AS access_to_own_car,
-    experience_required
+SELECT
+    duration_label,
+    publication_date,
+    application_deadline,
+    working_hours AS working_hours_label
 FROM {{ ref('stg_job_ads') }}
+WHERE duration_label IS NOT NULL

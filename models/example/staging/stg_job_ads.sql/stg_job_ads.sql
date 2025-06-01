@@ -3,18 +3,19 @@
 SELECT
     id,
     headline,
-    employer__name AS employer_name,
-    workplace_address__region AS region,
-    occupation_group__label AS occupation_group,
-    description__text AS description_text,
-    working_hours_type__label AS working_hours,
-    duration__label AS duration_label,
     publication_date,
     application_deadline,
+    description__text AS description_text,
+    duration__label AS duration_label,
+    working_hours_type__label AS working_hours,
     occupation__label AS occupation_label,
-    removed
-    FROM ads_dataset.job_ads
-
+    occupation_group__label AS occupation_group,
+    workplace_address__region AS region,
+    employer__name AS employer_name,
+    employer__organization_number,
+    employer__url AS employer_url
+FROM ads_dataset.job_ads
+WHERE id IS NOT NULL
 
 
 
