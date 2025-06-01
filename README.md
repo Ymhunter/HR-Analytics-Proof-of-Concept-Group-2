@@ -23,7 +23,7 @@ Detta projekt är ett proof of concept för att hjälpa rekryterare på ett HR-f
 | **DuckDB**       | Lagring av rå- och transformerad data    |
 | **dbt**          | Datatransformation enligt dimensional modell |
 | **Streamlit**    | Visualisering av KPI:er och trender      |
-| **Git + GitHub** | Samarbete och versionshantering         |
+| **GitHub** | Samarbete och versionshantering         |
 | **GitHub Projects** | Agil utveckling med Kanban-board       |
 
 ---
