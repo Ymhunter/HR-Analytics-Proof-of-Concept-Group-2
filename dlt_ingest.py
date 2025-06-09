@@ -14,7 +14,7 @@ pipeline.destination_client().database = "job_ads.duckdb"
 # Yrkesområden och id
 occupations = [
     "RPTn_bxG_ExZ",  # Försäljning, inköp, marknadsföring
-    "NYW6_mP6_wvf",  # Hälso och sjukvård
+    "NYW6_mP6_vwf",  # Hälso och sjukvård
     "ScKy_FHB_7wT"   # Hotell, restaurang, storhushåll
 ]
 

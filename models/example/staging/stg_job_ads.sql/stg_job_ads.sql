@@ -17,6 +17,3 @@ SELECT
     employer__url AS employer_url
 FROM ads_dataset.job_ads
 WHERE id IS NOT NULL
-
-
-

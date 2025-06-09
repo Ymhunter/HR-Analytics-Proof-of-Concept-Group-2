@@ -53,3 +53,6 @@ började med en mockad job_ads.csv eftersom det var ett snabbt sätt att få str
 Det gjorde det enklare att testa dbt pipelinen och dashboarden utan att vara beroende av api anrop 
 När flödet fungerade ersattes mocken med korrekt ingestion från jobtech apin i dlt_ingest.py detta visade sig dock att vara ett tidsamt arbete då man fick göra om dlt_ingest.py för apin detta gör jag inte om.
 Det positiva var att jag fick en djupare förståelse för hur API-anrop, och datainhämtning fungerar i praktiken. När den riktiga datan väl var på plats kunde jag validera att dashboarden visade relevanta jobbannonser för våra tre yrkesområden. Resultatet blev ett fungerande och automatiserat flöde från jobtech apit till visualisering i Streamlit via duckdb och dbt.
+
+För att köra scriptet
+streamlit run dashboard_app.py
