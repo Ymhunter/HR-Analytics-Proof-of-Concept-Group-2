@@ -1,45 +1,55 @@
 import dlt
 import requests
+from pathlib import Path
+import os
 
-# Hämta jobbanonser från olika yrkesområden
+# --- API fetcher --- #
+def get_ads(params):
+    url = "https://jobsearch.api.jobtechdev.se/search"
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    return response.json()
 
-
-@dlt.source
-def jobtech_source():
-    OCCUPATION_FIELDS = {
-        "RPtN_bxG_ExZ": "Försäljning, inköp, marknadsföring",
+# --- DLT resource: Loop over occupation fields and yield ads --- #
+@dlt.resource(write_disposition="replace")
+def jobsearch_multiple_fields():
+    occupation_fields = {
+        "RPTn_bxG_ExZ": "Försäljning, inköp, marknadsföring",
         "NYW6_mP6_vwf": "Hälso- och sjukvård",
-        "ScKy_FHB_7wT": "Hotell, restaurang, storhushåll"
+        "ScKy_FHB_7wT": "Hotell, restaurang, storhushåll",
+
     }
 
-    # Skapa en resurs för varje occupation field
-    def make_resource(occupation_id, occupation_name):
-        @dlt.resource(name=f"job_ads_{occupation_id}", write_disposition="replace")
-        def job_ads():
-            url = f"https://jobsearch.api.jobtechdev.se/search?occupation-field={occupation_id}"
-            headers = {"Accept": "application/json"}
-            response = requests.get(url, headers=headers)
-            response.raise_for_status()
-            data = response.json().get("hits", [])
+    for field_id, field_name in occupation_fields.items():
+        params = {
+            "occupation-field": field_id,
+            "limit": 100
+        }
 
-            for item in data:
-                item["occupation_id"] = occupation_id
-                item["occupation_name"] = occupation_name
-                yield item
+        data = get_ads(params)
+        hits = data.get("hits", [])
+        print(f"{field_name}: {len(hits)} ads found")
 
-        return job_ads
+        for ad in hits:
+            # Optionally add field name for easier distinction
+            ad["occupation_field_name"] = field_name
+            yield ad
 
-    # Returnera en lista med alla resurser
-    return [make_resource(occ_id, occ_name) for occ_id, occ_name in OCCUPATION_FIELDS.items()]
+# --- Run pipeline --- #
+def run_pipeline(table_name, working_directory):
+    pipeline = dlt.pipeline(
+        pipeline_name='jobsearch_multi',
+        destination=dlt.destinations.duckdb(f"{working_directory}/ads_resource.duckdb"),
+        dataset_name='staging'
+    )
 
+    load_info = pipeline.run(jobsearch_multiple_fields(), table_name=table_name)
+    print("Pipeline load info:", load_info)
 
-# Skapa pipeline
-pipeline = dlt.pipeline(
-    pipeline_name="job_ads_pipeline",
-    destination="duckdb",
-    dataset_name="raw_job_ads"
-)
+# --- Main --- #
+if __name__ == "__main__":
+    working_directory = Path(__file__).parent
+    os.chdir(working_directory)
 
-# Kör pipelinen
-load_info = pipeline.run(jobtech_source())
-print(load_info)
+    table_name = "job_ads_all"
+    run_pipeline(table_name, working_directory)
