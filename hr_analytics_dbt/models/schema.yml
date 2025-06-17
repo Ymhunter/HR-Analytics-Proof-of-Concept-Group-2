@@ -1,0 +1,87 @@
+version: 2
+
+models:
+  - name: src_job_ads
+    description: "Staging table with cleaned job ads data."
+    columns:
+      - name: ad_id
+        description: "Unique identifier of the ad."
+        tests:
+          - not_null
+          - unique
+      - name: occupation_field_id
+        description: "ID of the occupation field."
+      - name: occupation_field_name
+        description: "Name of the occupation field."
+      - name: occupation_id
+        description: "ID of the occupation."
+      - name: employer_id
+        description: "ID of the employer."
+
+  - name: fct_job_ads
+    description: "Fact table containing all job ads."
+    columns:
+      - name: ad_id
+        description: "Unique identifier for each job ad."
+        tests:
+          - not_null
+      - name: relevance
+        description: "Relevance score used for ranking."
+      - name: application_deadline
+        description: "Deadline for applying."
+
+  - name: dim_occupation
+    description: "Dimension table containing occupation metadata."
+    columns:
+      - name: occupation_id
+        description: "Primary key for occupation."
+        tests:
+          - unique
+          - not_null
+      - name: occupation
+        description: "Occupation name."
+
+  - name: dim_employer
+    description: "Dimension table containing employer metadata."
+    columns:
+      - name: employer_id
+        description: "Primary key for employer."
+        tests:
+          - unique
+          - not_null
+      - name: employer_name
+        description: "Employer's name."
+    name: dim_job_details
+    description: "Dimension table with normalized job ad details, such as title, scope, and salary."
+    columns:
+      - name: job_details_id
+        description: "Surrogate key for job ad details."
+        tests:
+          - unique
+          - not_null
+      - name: headline
+        description: "Title or headline of the job advertisement."
+      - name: description
+        description: "Plain text version of the job description."
+      - name: duration
+        description: "Job duration type (e.g. temporary, permanent)."
+      - name: salary_type
+        description: "Salary type (e.g. monthly, hourly)."
+      - name: scope_of_work__min
+        description: "Minimum percent of full-time employment."
+      - name: scope_of_work__max
+        description: "Maximum percent of full-time employment."
+  - name: dim_auxiliary_attributes 
+    description: "Dimension table for auxiliary job requirements like driver's license and experience."
+    columns:
+      - name: auxiliary_attributes_id
+        description: "Surrogate key for auxiliary attributes."
+        tests:
+          - unique
+          - not_null
+      - name: experience_required
+        description: "Whether the job requires prior experience."
+      - name: driver_license
+        description: "Indicates if a driver's license is required."
+      - name: access_to_own_car
+        description: "Indicates if the applicant needs access to their own vehicle."

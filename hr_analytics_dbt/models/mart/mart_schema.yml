@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: mart_technical_jobs
+    description: "Sammansatt tabell med platsannonser och kopplade dimensioner"
+    columns:
+      - name: job_details_id
+        description: "Unik ID för platsannonsens detaljer"
+      - name: occupation
+        description: "Yrkesbenämning enligt SSYK"
+      # osv...

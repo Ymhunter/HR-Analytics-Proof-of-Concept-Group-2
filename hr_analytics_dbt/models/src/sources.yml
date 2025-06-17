@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: job_ads
+    schema: staging
+    tables:
+      - name: job_ads_all
+        identifier: job_ads_all
+        description: >
+          Raw job advertisement data including occupation, employer, job details,
+          and various auxiliary attributes, used to populate dimensional models.
